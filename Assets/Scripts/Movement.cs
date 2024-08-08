@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     [SerializeField] float thrustForce = 1000f;
     [SerializeField] float RotatingForce = 100f;
+    [SerializeField] AudioClip thrustClip;
     Rigidbody rb;
     AudioSource audioSource;
 
@@ -31,7 +29,7 @@ public class Movement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * thrustForce * Time.deltaTime);
 
             if (!audioSource.isPlaying){
-                audioSource.Play();
+                audioSource.PlayOneShot(thrustClip);
             }  
         }
         else{
