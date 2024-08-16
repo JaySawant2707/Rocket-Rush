@@ -22,6 +22,7 @@ public class Ocillator : MonoBehaviour
     void OcillatingObject()
     {
         if (period == Mathf.Epsilon) { return; }
+        
         float cycles = Time.time / period; //continuously growing over time
 
         const float tau = Mathf.PI * 2;//constant value of 6.283

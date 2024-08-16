@@ -21,36 +21,26 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        processThrust();
-        processRotate();
+        ProcessThrust();
+        ProcessRotate();
     }
 
-    void processThrust()
+    void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.W))
-        {
             StartThrusting();
-        }
         else
-        {
             StopThrusting();
-        }
     }
 
-    void processRotate()
+    void ProcessRotate()
     {
         if (Input.GetKey(KeyCode.A))
-        {
             RotateLeft();
-        }
         else if (Input.GetKey(KeyCode.D))
-        {
             RotateRight();
-        }
         else
-        {
             StopRotating();
-        }
     }
 
     void StartThrusting()
@@ -58,13 +48,10 @@ public class Movement : MonoBehaviour
         rb.AddRelativeForce(Vector3.up * thrustForce * Time.deltaTime);
 
         if (!audioSource.isPlaying)
-        {
             audioSource.PlayOneShot(thrustClip);
-        }
+
         if (!mainThrustParticles.isPlaying)
-        {
             mainThrustParticles.Play();
-        }
     }
 
     void StopThrusting()
@@ -75,20 +62,16 @@ public class Movement : MonoBehaviour
 
     void RotateRight()
     {
-        applyRotation(-RotatingForce);
+        ApplyRotation(-RotatingForce);
         if (!leftThrustParticles.isPlaying)
-        {
             leftThrustParticles.Play();
-        }
     }
 
     void RotateLeft()
     {
-        applyRotation(RotatingForce);
+        ApplyRotation(RotatingForce);
         if (!rightThrustParticles.isPlaying)
-        {
             rightThrustParticles.Play();
-        }
     }
 
     void StopRotating()
@@ -97,7 +80,7 @@ public class Movement : MonoBehaviour
         rightThrustParticles.Stop();
     }
 
-    void applyRotation(float rotationThisFrame)
+    void ApplyRotation(float rotationThisFrame)
     {
         rb.freezeRotation = true;   //freezing rotations so we can manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
